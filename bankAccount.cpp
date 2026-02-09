@@ -32,5 +32,7 @@ int main(){
     cout<<"enter amoun to withdraw";
     cin>>amnt;
     b.withdraw(amnt);
+    cout<<b.getBalance()<<endl;
+    b.deposit(100);
     cout<<b.getBalance();
 }
