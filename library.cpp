@@ -1,5 +1,7 @@
 #include<iostream>
 #include<vector>
+#include<string>
+#include<map>
 using namespace std;
 
 class Book{
@@ -56,14 +58,42 @@ public:
         return false;
     }
 };
+class Lib2{
+private:
+    map<string, Book> books;
+public:
+    void addBook(const Book& book ){
+        books.emplace(book.getTitle(),book);
+    }
+    bool isBookAvailable(const string& title){
+         auto it = books.find(title);
+    return it != books.end() && it->second.available();
+    }
+    bool issueBook(const string& title) {
+        auto it=books.find(title);
+        if(it!=books.end() && it->second.available()){
+            it->second.issue();
+            return true;
+        }
+        return false;
+    }
+};
 int main(){
-    Library lib;
+    // Library lib;
+
+    // lib.addBook(Book("C++"));
+    // lib.addBook(Book("OOPS"));
+
+    // lib.issueBook("C++");
+    // cout<<lib.isBookAvailable("C++");
+    // lib.returnBook("C++");
+    // cout<<endl<<lib.isBookAvailable("C++");
+
+    Lib2 lib;
 
     lib.addBook(Book("C++"));
     lib.addBook(Book("OOPS"));
-
+    cout<<lib.isBookAvailable("C++")<<endl;
     lib.issueBook("C++");
     cout<<lib.isBookAvailable("C++");
-    lib.returnBook("C++");
-    cout<<endl<<lib.isBookAvailable("C++");
 }
