@@ -4,7 +4,7 @@ using namespace std;
 
 
 class bankAccount{
-private:
+private:            //Encapsulation
    double balance;
    int accno;
 public:
@@ -15,7 +15,7 @@ public:
     void deposit(double val){
         if(val>0) balance+=val;
     }
-    bool withdraw(double val){
+    virtual bool withdraw(double val){          //Abstraction
         if(val>0 && val<=balance){ balance-=val;
         return true;
         }
@@ -25,7 +25,18 @@ public:
         return balance;
     }
 };
-
+class savingsAccount : public bankAccount{
+private:
+    double minBalance;
+public:
+    savingsAccount(int accNo,double balance, double minBal) : bankAccount(accNo, balance), minBalance(minBal) {};
+    bool withdraw(double amount) override {
+        if (getBalance() - amount >= minBalance) {
+            return bankAccount::withdraw(amount);
+        }
+        return false;
+    }
+};
 int main(){
     bankAccount b(85, 100.20);
     int amnt;
