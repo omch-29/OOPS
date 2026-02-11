@@ -31,6 +31,12 @@ public:
     void addBook(const Book& book){
         books.push_back(book);
     }
+    bool isBookAvailable(const string& title){
+        for(auto& book:books){
+            if(book.getTitle()==title && book.available()) return true;
+        }
+        return false;
+    }
     bool issueBook(const string& title){
         for(auto& book:books){
             if(book.getTitle() == title && book.available()){
@@ -40,7 +46,24 @@ public:
         }
         return false;
     }
+    bool returnBook(const string& title){
+        for(auto& book:books){
+            if(book.getTitle()==title && !book.available()){
+                book.giveBack();
+                return true;
+            }
+        }
+        return false;
+    }
 };
 int main(){
+    Library lib;
 
+    lib.addBook(Book("C++"));
+    lib.addBook(Book("OOPS"));
+
+    lib.issueBook("C++");
+    cout<<lib.isBookAvailable("C++");
+    lib.returnBook("C++");
+    cout<<endl<<lib.isBookAvailable("C++");
 }
