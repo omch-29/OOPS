@@ -11,3 +11,9 @@ public:
 
     virtual ~PaymentMethod(){}
 };
+class CreditCardPayment : public PaymentMethod{
+public:
+    void pay(double amount) override{
+        cout<< "paid rs"<<amount<<"using credit card"<<endl;
+    }
+};
