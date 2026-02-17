@@ -5,6 +5,9 @@
 #include<map>
 using namespace std;
 
-class Payment{
+class PaymentMethod{
+public:
+    virtual void pay(double amount)=0;
 
+    virtual ~PaymentMethod(){}
 };
