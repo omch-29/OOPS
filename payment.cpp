@@ -17,3 +17,9 @@ public:
         cout<< "paid rs"<<amount<<"using credit card"<<endl;
     }
 };
+class UpiPayment : public PaymentMethod{
+public:
+    void pay(double amount) override{
+        cout<< "paid rs"<<amount<<"using UPI"<<endl;
+    }
+};
