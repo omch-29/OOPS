@@ -23,3 +23,20 @@ public:
         cout<< "paid rs"<<amount<<"using UPI"<<endl;
     }
 };
+class CashPayment : public PaymentMethod {
+public:
+    void pay(double amount) override {
+        cout << "Paid rs" << amount << " using Cash" << endl;
+    }
+};
+class PaymentProcessor{
+    PaymentMethod* paymentMethod;
+public:
+    PaymentProcessor(PaymentMethod* method){
+        paymentMethod = method;
+    }
+
+    void processPayment(double amount){
+        paymentMethod->pay(amount);
+    }
+};
