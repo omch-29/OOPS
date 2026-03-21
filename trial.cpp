@@ -33,4 +33,15 @@ int main(){
     User* u2 = new User(2, "cde");
 
     us.addUser(u1);
+    us.addUser(u2);
+
+    User* user = us.getUser(1);
+
+    if(user != nullptr) {
+        cout << "User found: " << user->name << endl;
+    } else {
+        cout << "User not found" << endl;
+    }
+
+    return 0;
 }
