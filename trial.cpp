@@ -28,5 +28,9 @@ public:
     }
 };
 int main(){
-    
+    UserService us;
+    User* u1 = new User(1,"abc");
+    User* u2 = new User(2, "cde");
+
+    us.addUser(u1);
 }
