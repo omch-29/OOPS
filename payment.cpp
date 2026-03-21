@@ -14,19 +14,19 @@ public:
 class CreditCardPayment : public PaymentMethod{
 public:
     void pay(double amount) override{
-        cout<< "paid rs"<<amount<<"using credit card"<<endl;
+        cout<< "paid rs "<<amount<<" using credit card"<<endl;
     }
 };
 class UpiPayment : public PaymentMethod{
 public:
     void pay(double amount) override{
-        cout<< "paid rs"<<amount<<"using UPI"<<endl;
+        cout<< "paid rs "<<amount<<" using UPI"<<endl;
     }
 };
 class CashPayment : public PaymentMethod {
 public:
     void pay(double amount) override {
-        cout << "Paid rs" << amount << " using Cash" << endl;
+        cout << "Paid rs " << amount << " using Cash" << endl;
     }
 };
 class PaymentProcessor{
@@ -40,3 +40,17 @@ public:
         paymentMethod->pay(amount);
     }
 };
+int main(){
+    PaymentMethod* creditcard = new CreditCardPayment();
+    PaymentMethod* upi = new UpiPayment();
+    PaymentMethod* cash = new CashPayment();
+
+    PaymentProcessor p1(creditcard);
+    p1.processPayment(1000);
+
+    PaymentProcessor p2(upi);
+    p2.processPayment(500);
+
+    PaymentProcessor p3(cash);
+    p3.processPayment(200);
+}
