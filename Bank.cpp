@@ -2,37 +2,30 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class WithdawableAcc{
+class Account{
+protected:
+    int acc;
 public:
-    int accNo;
+    Account(int a) : acc(a) {}
+    virtual void deposit()=0;
+    virtual ~Account()=default;
+};
+class withdrawableAcc : public Account{
+public:
+    withdrawableAcc(int a) : Account(a) {}
 
-    virtual void deposit(){
-        cout<<"Money Deposited\n";
+    void deposit() override{
+        cout<<"Money deposited in"<<acc<<endl;
     }
     void withdraw(){
-        cout<<"Money Withdrawn\n";
+        cout<<"Money Withdrawn from:"<<acc<<endl;
     }
 };
-class NonWithdrawableAcc : public WithdawableAcc{
+class NonWithdrawableAcc :public Account{
 public:
-    int accNo;
-    void deposit() override{
-        cout<<"Money Deposited\n";
-    }
-};
+    NonWithdrawableAcc(int a) : Account(a) {}
 
-class Client{
-public:
-    vector<WithdawableAcc*>withdrawAvailable;
-    vector<NonWithdrawableAcc*>withdrawNotAvailable;
-    Client(vector<WithdawableAcc*>& canWithdraw, vector<NonWithdrawableAcc*>& cantWithdraw) {
-        withdrawAvailable=canWithdraw;
-        withdrawNotAvailable=cantWithdraw;
-    }
-    void display(){
-        for(auto& it : withdrawAvailable) {
-            it->deposit();
-        }
-        
+    void deposit() override{
+        cout<<"Money Deposited to:"<<acc<<endl;
     }
 };
