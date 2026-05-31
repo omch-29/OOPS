@@ -10,9 +10,9 @@ public:
     virtual void deposit()=0;
     virtual ~Account()=default;
 };
-class withdrawableAcc : public Account{
+class WithdrawableAcc : public Account{
 public:
-    withdrawableAcc(int a) : Account(a) {}
+    WithdrawableAcc(int a) : Account(a) {}
 
     void deposit() override{
         cout<<"Money deposited in"<<acc<<endl;
@@ -27,5 +27,27 @@ public:
 
     void deposit() override{
         cout<<"Money Deposited to:"<<acc<<endl;
+    }
+};
+class Client{
+    vector<WithdrawableAcc*> withdrawAvailable;
+    vector<NonWithdrawableAcc*> withdrawNotAvailable;
+
+    Client(
+        const vector<WithdrawableAcc*>& canWithdraw,
+        const vector<NonWithdrawableAcc*>& cantWithdraw
+    ) {
+        withdrawAvailable = canWithdraw;
+        withdrawNotAvailable = cantWithdraw;
+    }
+    void display(){
+        cout << "\nWithdrawable Accounts:\n";
+        for (auto acc : withdrawAvailable){
+            acc->deposit();
+            acc->withdraw();
+        }
+        cout << "\nNon-Withdrawable Accounts:\n";
+        for (auto acc : withdrawNotAvailable)
+        acc->deposit();
     }
 };
