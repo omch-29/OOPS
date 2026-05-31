@@ -32,7 +32,7 @@ public:
 class Client{
     vector<WithdrawableAcc*> withdrawAvailable;
     vector<NonWithdrawableAcc*> withdrawNotAvailable;
-
+public:
     Client(
         const vector<WithdrawableAcc*>& canWithdraw,
         const vector<NonWithdrawableAcc*>& cantWithdraw
@@ -51,3 +51,18 @@ class Client{
         acc->deposit();
     }
 };
+
+int main(){
+    WithdrawableAcc w1(10);
+    WithdrawableAcc w2(20);
+    NonWithdrawableAcc nw1(30);
+    NonWithdrawableAcc nw2(40);
+
+    vector<WithdrawableAcc*> can={&w1, &w2};
+    vector<NonWithdrawableAcc*> cant={&nw1, &nw2};
+
+    Client client(can, cant);
+    client.display();
+
+
+}
